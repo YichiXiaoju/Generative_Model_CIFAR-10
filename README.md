@@ -10,6 +10,7 @@ The goal is to train and compare different diffusion and flow-based generative m
 
 ## Project Structure
 
+```text
 Generative_Model_CIFAR-10/
 │
 ├── datasets/                # Data loading and preprocessing
@@ -30,8 +31,9 @@ Generative_Model_CIFAR-10/
 │   └── ema.py               # Exponential Moving Average
 │
 ├── train.py                 # Training entry point
-├── ddpm_samnple.py           # DDPM sampling script
-├── ddim_sample.py           # DDIM sampling script
+├── sample_ddpm.py           # DDPM sampling script
+├── sample_ddim.py           # DDIM sampling script
 └── readme.md
+
 
 
