@@ -52,25 +52,50 @@ The codebase is modular, extensible, and numerically stable, featuring cosine no
 Generative_Model_CIFAR-10/
 ├── datasets/
 │ └── cifar10.py # CIFAR-10 dataloader
-├── models/
-│ └── unet.py # Full U-Net backbone
+│
+├── debug/ # Consistency checks, visualization, debugging outputs
+│ └── recon_x0_vs_pred.png
+│
 ├── methods/
-│ ├── ddpm.py # Training loss for DDPM
-│ ├── ddim.py # Sampling and ODE formulation for DDIM
-│ ├── flow_matching.py # Flow Matching implementation
-│ └── rectified_flow.py # Rectified Flow training and ODE solvers
+│ ├── ddpm.py # DDPM training loss
+│ ├── ddim.py # DDIM deterministic sampler
+│ ├── flow_matching.py # Flow Matching (velocity-based training)
+│ └── rectified_flow.py # Rectified Flow ODE solvers and training logic
+│
+├── models/
+│ └── unet.py # Full U-Net backbone with time embeddings
+│
+├── runs/ # Checkpoints and EMA weights
+│ ├── ddpm/
+│ │ ├── latest.pt
+│ │ └── latest_ema.pt
+│ ├── rectified_flow/
+│ │ ├── latest.pt
+│ │ └── latest_ema.pt
+│ └── flow_matching/
+│ ├── latest.pt
+│ └── latest_ema.pt
+│
+├── samples/ # Generated image outputs
+│ ├── ddpm_16.png
+│ ├── ddim_16.png
+│ ├── rf_100.png
+│ └── fm_100.png
+│
 ├── utils/
-│ ├── schedules.py # Linear / cosine beta schedules
-│ ├── ema.py # Exponential Moving Average class
-│ └── visualization.py # Optional visualization utilities
-├── train.py # Unified training pipeline
-├── ddpm_sample.py # Improved DDPM sampling (x0-form)
-├── ddim_sample.py # Deterministic DDIM sampling
-├── sample_rectifiedflow.py # Rectified Flow sampling
-└── samples/
-├── ddpm_16.png
-├── ddim_16.png
-└── rf_100.png
+│ ├── schedules.py # Beta schedule (linear / cosine)
+│ ├── ema.py # Exponential Moving Average helper
+│
+├── train.py # Unified DDPM training script
+├── train_flowmatching.py # Flow Matching training
+├── train_rectifiedflow.py # Rectified Flow training
+│
+├── ddpm_sample.py # DDPM sampling (x₀-form + dynamic thresholding)
+├── ddim_sample.py # DDIM sampling (deterministic)
+├── sample_flowmatching.py # Flow Matching ODE sampling
+├── sample_rectifiedflow.py # Rectified Flow ODE sampling
+│
+├── readme.md # Project documentation
 
 
 
