@@ -15,7 +15,6 @@ The codebase is modular, extensible, and numerically stable, featuring cosine no
 | **Schedulers** | Linear and cosine β-schedules |
 | **Sampling Methods** | DDPM (stochastic), DDIM (deterministic), Rectified Flow (ODE-based) |
 | **Stabilization** | EMA (Exponential Moving Average), gradient clipping, dynamic thresholding |
-| **Hardware Tested** | NVIDIA A100, RTX 4090, Colab T4 (FP32) |
 
 ---
 
