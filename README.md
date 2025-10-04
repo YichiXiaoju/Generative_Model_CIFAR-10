@@ -18,32 +18,41 @@ The codebase is modular, extensible, and numerically stable, featuring cosine no
 
 ---
 
-## Model Overview
-
-### 1. **DDPM** — *Denoising Diffusion Probabilistic Model*
+### 1. **DDPM** – *Denoising Diffusion Probabilistic Model*
 - Learns to predict additive Gaussian noise ε from noisy images.
 - Sampling follows posterior transition:
-  \[
-  p_\theta(x_{t-1}|x_t) = \mathcal{N}\big(\mu_\theta(x_t, t), \tilde{\beta}_t I \big)
-  \]
+
+$$
+p_\theta(x_{t-1} \mid x_t) = \mathcal{N}\big(\mu_\theta(x_t, t), \tilde{\beta}_t I \big)
+$$
+
 - Implemented with **x₀-form mean** and **dynamic thresholding** for stable generation.
 
-### 2. **DDIM** — *Deterministic Diffusion Implicit Model*
+---
+
+### 2. **DDIM** – *Deterministic Diffusion Implicit Model*
 - Deterministic sampling derived from DDPM marginal consistency.
 - ODE formulation enables fewer steps (e.g. 50–100) with similar quality.
-- Excellent speed-quality tradeoff.
+- Excellent speed–quality tradeoff.
+
+---
 
 ### 3. **Flow Matching (FM)**
-- Trains a neural vector field \(v_\theta(x, t)\) to match the true probability flow ODE.
+- Trains a neural vector field $v_\theta(x, t)$ to match the true probability flow ODE.
 - Provides a direct continuous-time perspective bridging diffusion and flow models.
+
+---
 
 ### 4. **Rectified Flow (RF)**
 - A simplified flow-matching variant using a “rectified” linear trajectory.
 - Sampling via ODE solver (Euler / Heun):
-  \[
-  x_{t+\Delta t} = x_t + \Delta t \, v_\theta(x_t, t)
-  \]
+
+$$
+x_{t+\Delta t} = x_t + \Delta t \, v_\theta(x_t, t)
+$$
+
 - Deterministic, fast, and interpretable.
+
 
 ---
 
